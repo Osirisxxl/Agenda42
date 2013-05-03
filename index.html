@@ -23,20 +23,92 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <!-- page Month -->
+        <div data-role="page" id="month">
+            <div data-role="header">
+                <h1>Agenda42</h1>
+            </div><!-- /header -->
+
+            <div data-role="content">
+                <h1 style="text-align: center">Hello Agenda 42</h1>
+                <div id="calendar" class="ui-grid-c">
+                    <div class="ui-block-a"><button>1</button></div>
+                    <div class="ui-block-b"><button>2</button></div>
+                    <div class="ui-block-c"><button>3</button></div>
+                    <div class="ui-block-d"><button>4</button></div>
+
+                    <div class="ui-block-a"><button>5</button></div>
+                    <div class="ui-block-b"><button>6</button></div>
+                    <div class="ui-block-c"><button>7</button></div>
+                    <div class="ui-block-d"><button>8</button></div>
+
+                    <div class="ui-block-a"><button>9</button></div>
+                    <div class="ui-block-b"><button>10</button></div>
+                    <div class="ui-block-c"><button>11</button></div>
+                    <div class="ui-block-d"><button>12</button></div>
+
+                    <div class="ui-block-a"><button>13</button></div>
+                    <div class="ui-block-b"><button>14</button></div>
+                    <div class="ui-block-c"><button>15</button></div>
+                    <div class="ui-block-d"><button>16</button></div>
+
+                    <div class="ui-block-a"><button>17</button></div>
+                    <div class="ui-block-b"><button>18</button></div>
+                    <div class="ui-block-c"><button>19</button></div>
+                    <div class="ui-block-d"><button>20</button></div>
+
+                    <div class="ui-block-a"><button>21</button></div>
+                    <div class="ui-block-b"><button>22</button></div>
+                    <div class="ui-block-c"><button>23</button></div>
+                    <div class="ui-block-d"><button>24</button></div>
+
+                    <div class="ui-block-a"><button>25</button></div>
+                    <div class="ui-block-b"><button>26</button></div>
+                    <div class="ui-block-c"><button>27</button></div>
+                    <div class="ui-block-d"><button>28</button></div>
+
+                    <div class="ui-block-a"><button>29</button></div>
+                    <div class="ui-block-b"><button>30</button></div>
+                    <div class="ui-block-c"><button>31</button></div>
+
+                </div>
+            </div><!-- /content -->
+
+            <div data-role="footer">
+                <div class="ui-grid-b">
+                    <div class="ui-block-a"><button style="width: 50px">Previous</button></div>
+                    <div class="ui-block-b"><h4 style="text-align: center">Footer</h4></div>
+                    <div class="ui-block-c"><button style="width: 50px">Next</button></div>
+                </div>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
+        <!-- Start of page: #day-->
+        <div data-role="page" id="day">
+
+            <div data-role="header">
+                <h1>Day</h1>
+            </div><!-- /header -->
+
+            <div data-role="content">
+                <div id="dayResults">
+
+                </div>
+            </div><!-- /content -->
+
+            <div data-role="footer">
+                <h1>Display buttons</h1>
+            </div><!-- /footer -->
+        </div><!-- /page day -->
+
+
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="js/vendor/jquery.mobile-1.3.1.min.js" ></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+
     </body>
 </html>
