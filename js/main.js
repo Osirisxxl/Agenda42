@@ -39,8 +39,16 @@
 
                 // code to run if the request succeeds;
                 // the response is passed to the function
-                success: function( json ) {
-                    $( "#dayResults" ).html( json.toString() );
+                success: function( results ) {
+                    var $results = $( "#dayResults" );
+                    $results.empty();
+                    for (var i = 0; i < results.length; i++ ) {
+                        $results.append( "<div data-role='collapsible'>" +
+                                            "<h3>"+results[i].name + "</h3>" +
+                                            "<p>" + results[i].description + "</p>" +
+                                        "</div> ");
+                    }
+                    $results.collapsibleset( "refresh" );
                 },
 
                 // code to run if the request fails; the raw request and
@@ -58,5 +66,5 @@
 
 
     });
- })();
 
+ })();
