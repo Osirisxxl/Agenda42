@@ -26,12 +26,11 @@
 
         <!-- page Month -->
         <div data-role="page" id="month">
-            <div data-role="header">
+            <div data-role="header" data-position="fixed">
                 <h1>Agenda42</h1>
             </div><!-- /header -->
 
             <div data-role="content">
-                <h1 style="text-align: center">Hello Agenda 42</h1>
                 <div id="calendar" class="ui-grid-c">
                     <div class="ui-block-a"><button>1</button></div>
                     <div class="ui-block-b"><button>2</button></div>
@@ -88,7 +87,7 @@
         <!-- Start of page: #day-->
         <div data-role="page" id="day">
 
-            <div data-role="header">
+            <div data-role="header" data-position="fixed">
                 <a data-role="button" data-icon="arrow-l" data-iconpos="notext" href="#month">Back</a>
                 <h1>Day</h1>
             </div><!-- /header -->
@@ -115,7 +114,7 @@
                 <div data-role="controlgroup">
                     <a href="#eventEdit" data-role="button">Edit event</a>
                     <a href="#eventEdit" data-role="button">New event</a>
-                    <a href="#" data-role="button" style="background: red">Delete event</a> <!-- onclick="deleteEvent" -->
+                    <a href="#" data-role="button" style="background: red">Delete event</a> <!-- onclick="deleteEvent()" -->
                 </div>
             </div><!-- /content -->
         </div><!-- /page actionsPopUp -->
@@ -124,15 +123,38 @@
         <!-- Start of page: #eventEdit-->
         <div data-role="page" id="eventEdit">
 
-            <div data-role="header">
+            <div data-role="header" data-position="fixed">
                 <a data-role="button" data-icon="arrow-l" data-iconpos="notext" href="#month">Back</a>
                 <h1>Edit/New event</h1>
             </div><!-- /header -->
 
             <div data-role="content">
-
-
+                <div>
+                    <input type="text" id="eventName"/>
                 </div>
+                <div>
+                    <div>
+                        <input id="eventBeginDate" type="date"/>
+                        <label for="eventDuration">Length in minutes:</label>
+                        <input type="range" name="eventDuration" id="eventDuration" value="60" min="1" max="300" data-highlight="true" />
+                    </div>
+                    <input type="time" id="eventBeginTime"/>
+                </div>
+                <div>
+                    <div>
+                        <input type="text" id="eventDescription" placeholder="Enter a description for the event"/>
+                        <div class="containing-element">
+                            <label for="flip-min">Alarm:</label>
+                            <select name="flip-min" id="flip-min" data-role="slider">
+                                <option value="off">Off</option>
+                                <option value="on">On</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="Event place">
+                    </div>
+                    <img src="apple-touch-icon.png"> <!-- onclick="shiftPhoto()" -->
+                </div>
+
             </div><!-- /content -->
 
             <div data-role="footer" data-position="fixed">
