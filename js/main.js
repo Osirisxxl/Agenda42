@@ -16,6 +16,7 @@
         //Init Calendar buttons
         var $myCalendarButtons = $( "#calendar" ).find( "button" );
         $myCalendarButtons.on("click", function(){
+            $( "#dayResults").empty();
             $.mobile.changePage( "#day", { transition: "slide" });
             document.agenda42.selections.date.setDate( $(this).html() );
             $( "#day" ).find( "div:first" ).find( "h1" ).html( document.agenda42.selections.date.toLocaleDateString());
@@ -41,7 +42,7 @@
                 // the response is passed to the function
                 success: function( results ) {
                     var $results = $( "#dayResults" );
-                    $results.empty();
+
                     for (var i = 0; i < results.length; i++ ) {
                         $results.append( "<div data-role='collapsible'>" +
                                             "<h3>"+results[i].name + "</h3>" +
