@@ -100,7 +100,7 @@
             </div><!-- /content -->
 
             <div data-role="footer" style="text-align: center">
-                <a href="#actionsPopUp" data-role="button" data-icon="plus" data-iconpos="right" data-rel="dialog" data-transition="slideup" style="margin: 5px" >Actions</a>
+                <a href="#actionsPopUp" data-role="button" data-icon="plus" data-inline="true" data-iconpos="notext" data-rel="dialog" data-transition="slideup" style="margin-top: 5px;margin-bottom: 15px" ></a>
             </div><!-- /footer -->
         </div><!-- /page day -->
 
@@ -113,12 +113,32 @@
 
             <div data-role="content">
                 <div data-role="controlgroup">
-                    <a href="index.html" data-role="button">Edit event</a>
-                    <a href="index.html" data-role="button">New event</a>
-                    <a href="index.html" data-role="button" style="background: red">Delete event</a>
+                    <a href="#eventEdit" data-role="button">Edit event</a>
+                    <a href="#eventEdit" data-role="button">New event</a>
+                    <a href="#" data-role="button" style="background: red">Delete event</a> <!-- onclick="deleteEvent" -->
                 </div>
             </div><!-- /content -->
         </div><!-- /page actionsPopUp -->
+
+
+        <!-- Start of page: #eventEdit-->
+        <div data-role="page" id="eventEdit">
+
+            <div data-role="header">
+                <a data-role="button" data-icon="arrow-l" data-iconpos="notext" href="#month">Back</a>
+                <h1>Edit/New event</h1>
+            </div><!-- /header -->
+
+            <div data-role="content">
+
+
+                </div>
+            </div><!-- /content -->
+
+            <div data-role="footer">
+
+            </div><!-- /footer -->
+        </div><!-- /page eventEdit-->
 
 
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
