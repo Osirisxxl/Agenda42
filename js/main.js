@@ -14,11 +14,14 @@
 
 
         //Init Calendar buttons
-        var $myCalendarButtons = $( "#calendar" ).find( "button" );
+        var $myCalendarButtons = $( "#calendar" ).find( "a" );
         $myCalendarButtons.on("click", function(){
+            //clears events display
             $( "#dayResults").empty();
+            //Navigation
             $.mobile.changePage( "#day", { transition: "slide" });
-            document.agenda42.selections.date.setDate( $(this).html() );
+            //Sets selected date
+            document.agenda42.selections.date.setDate( $(this).text() );
             $( "#day" ).find( "div:first" ).find( "h1" ).html( document.agenda42.selections.date.toLocaleDateString());
 
             $.support.cors = true;
