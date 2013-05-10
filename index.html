@@ -31,6 +31,7 @@
             </div><!-- /header -->
 
             <div data-role="content">
+                <h1>Transition testing</h1>
                 <div id="calendar" class="ui-grid-c">
                     <div class="ui-block-a"><button>1</button></div>
                     <div class="ui-block-b"><button>2</button></div>
@@ -124,28 +125,28 @@
         <div data-role="page" id="eventEdit">
 
             <div data-role="header" data-position="fixed">
-                <a data-role="button" data-icon="arrow-l" data-iconpos="notext" href="#month">Back</a>
+                <a data-role="button" data-icon="arrow-l" data-iconpos="notext" href="#day">Back</a>
                 <h1>Edit/New event</h1>
             </div><!-- /header -->
 
             <div data-role="content">
                 <div>
-                    <input type="text" id="eventName"/>
+                    <input type="text" id="eventName" placeholder="Enter a name for the event"/>
                 </div>
-                <div>
-                    <div>
-                        <input id="eventBeginDate" type="date"/>
+                <div style="display: inline">
+                    <div style="display: inline-block;width: 50%">
+                        <input id="eventBeginDate" type="date" placeholder="pick a date"/>
                         <label for="eventDuration">Length in minutes:</label>
                         <input type="range" name="eventDuration" id="eventDuration" value="60" min="1" max="300" data-highlight="true" />
                     </div>
-                    <input type="time" id="eventBeginTime"/>
+                    <input type="time" id="eventBeginTime" style="display: block;width: 50%"/>
                 </div>
                 <div>
-                    <div>
+                    <div style="width: 75%;display: inline-block">
                         <input type="text" id="eventDescription" placeholder="Enter a description for the event"/>
-                        <div class="containing-element">
-                            <label for="flip-min">Alarm:</label>
-                            <select name="flip-min" id="flip-min" data-role="slider">
+                        <div class="containing-element" style="display: inline">
+                            <label for="eventAlarm" style="display: inline-block">Alarm:</label>
+                            <select name="eventAlarm" id="eventAlarm" data-role="slider">
                                 <option value="off">Off</option>
                                 <option value="on">On</option>
                             </select>
