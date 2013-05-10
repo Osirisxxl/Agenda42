@@ -19,7 +19,7 @@
             //clears events display
             $( "#dayResults").empty();
             //Navigation
-            $.mobile.changePage( "#day", { transition: "slide" });
+            //$.mobile.changePage( "#day", { transition: "slide" });
             //Sets selected date
             document.agenda42.selections.date.setDate( $(this).text() );
             $( "#day" ).find( "div:first" ).find( "h1" ).html( document.agenda42.selections.date.toLocaleDateString());
