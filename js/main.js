@@ -16,9 +16,9 @@
         //Init Calendar buttons
         var $myCalendarButtons = $( "#calendar" ).find( "button" );
         $myCalendarButtons.on("click", function(){
-            $( "#dayResults").empty();
+            //$( "#dayResults").empty();
             $.mobile.changePage( "#day", { transition: "slide" });
-            document.agenda42.selections.date.setDate( $(this).html() );
+            /*document.agenda42.selections.date.setDate( $(this).html() );
             $( "#day" ).find( "div:first" ).find( "h1" ).html( document.agenda42.selections.date.toLocaleDateString());
 
             $.support.cors = true;
@@ -61,7 +61,7 @@
                 // code to run regardless of success or failure
                 complete: function( xhr, status ) {
                 }
-            });
+            });             */
         });
 
 
