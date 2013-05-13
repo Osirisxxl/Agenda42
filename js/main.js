@@ -19,7 +19,7 @@
 
 
         //Init Calendar buttons
-        var $myCalendarButtons = $( "#calendar" ).find( "button" );
+        var $myCalendarButtons = $( "#calendar" ).find( "a" );
         $myCalendarButtons.on("vclick", function(){
             //clears events display
             $( "#dayResults").empty();
