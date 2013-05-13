@@ -3,10 +3,10 @@
 
 
     $(document).ready(function(){
-        //Init fastclick
+        /*//Init fastclick
         $(function() {
             FastClick.attach(document.body);
-        });
+        });*/
         //Init selected values;
         document.agenda42 = {};
         document.agenda42.selections = {
@@ -20,7 +20,7 @@
 
         //Init Calendar buttons
         var $myCalendarButtons = $( "#calendar" ).find( "button" );
-        $myCalendarButtons.on("click", function(){
+        $myCalendarButtons.on("vclick", function(){
             //clears events display
             $( "#dayResults").empty();
             //Navigation
