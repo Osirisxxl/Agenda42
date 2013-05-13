@@ -3,6 +3,10 @@
 
 
     $(document).ready(function(){
+        //Init fastclick
+        $(function() {
+            FastClick.attach(document.body);
+        });
         //Init selected values;
         document.agenda42 = {};
         document.agenda42.selections = {
