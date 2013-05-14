@@ -32,7 +32,7 @@
 
             <div data-role="content">
                 <div id="calendar" class="ui-grid-c">
-                    <div class="ui-block-a"><a data-role="button">1</a></div>
+                    <div class="ui-block-a"><a data-role="button" href="">1</a></div>
                     <div class="ui-block-b"><a data-role="button">2</a></div>
                     <div class="ui-block-c"><a data-role="button">3</a></div>
                     <div class="ui-block-d"><a data-role="button">4</a></div>
@@ -112,9 +112,9 @@
 
             <div data-role="content">
                 <div data-role="controlgroup">
-                    <a href="#eventEdit" data-role="button">Edit event</a>
-                    <a href="#eventEdit" data-role="button">New event</a>
-                    <a href="#" data-role="button" style="background: red">Delete event</a> <!-- onclick="deleteEvent()" -->
+                    <a id="editEventAction" href="#eventEdit" data-role="button">Edit event</a>
+                    <a id="newEventAction" href="#eventEdit" data-role="button">New event</a>
+                    <a id="deleteEventAction" href="#" data-role="button" style="background: red">Delete event</a> <!-- onclick="deleteEvent()" -->
                 </div>
             </div><!-- /content -->
         </div><!-- /page actionsPopUp -->
@@ -125,7 +125,7 @@
 
             <div data-role="header" data-position="fixed">
                 <a data-role="button" data-icon="arrow-l" data-iconpos="notext" data-rel="back">Back</a>
-                <h1>Edit/New event</h1>
+                <h1 id="eventEditHeader">Edit/New event</h1>
             </div><!-- /header -->
 
             <div data-role="content">
@@ -136,14 +136,14 @@
                     <div class="ui-block-a" style="padding-right: 5px">
                         <input id="eventBeginDate" type="date"/>
                         <label for="eventDuration">Length in minutes:</label>
-                        <input type="range" name="eventDuration" id="eventDuration" value="60" min="1" max="300" data-highlight="true" />
+                        <input type="range" name="eventDuration" id="eventDuration" min="1" max="300" data-highlight="true" />
                     </div>
                     <div class="ui-block-b" style="padding-left: 5px">
                         <input type="time" id="eventBeginTime"/>
                         <div class="containing-element ui-grid-b">
-                            <div class="ui-block-a" style="text-align: right;padding-right: 5px ;padding-top: 15px"><label for="flip-min">Alarm:</label></div>
+                            <div class="ui-block-a" style="text-align: right;padding-right: 5px ;padding-top: 15px"><label for="eventAlarm">Alarm:</label></div>
                             <div class="ui-block-b">
-                            <select name="flip-min" id="flip-min" data-role="slider">
+                            <select name="eventAlarm" id="eventAlarm" data-role="slider">
                                 <option value="off">Off</option>
                                 <option value="on">On</option>
                             </select>
@@ -154,7 +154,7 @@
                 <div class="ui-grid-a">
                     <div class="ui-block-a" style="padding-right: 5px">
                         <textarea id="eventDescription" placeholder="Enter a description for the event"></textarea>
-                        <input type="text" placeholder="Event place">
+                        <input id="eventPlace" type="text" placeholder="Event place">
                     </div>
                     <div class="ui-block-b" style="text-align: center; padding-left: 5px">
                         <img src="apple-touch-icon.png"> <!-- onclick="shiftPhoto()" -->
@@ -166,10 +166,10 @@
             <div data-role="footer" data-position="fixed">
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <a data-icon="check" data-iconpos="left" data-role="button">Save</a>
+                        <a id="saveEvent" data-icon="check" data-iconpos="left" data-role="button">Save</a>
                     </div>
                     <div class="ui-block-b">
-                        <a data-role="button" data-icon="delete" data-iconpos="right" >Discard</a>
+                        <a data-role="button" data-icon="delete" data-iconpos="right" data-rel="back">Discard</a>
                     </div>
                 </div>
             </div><!-- /footer -->
