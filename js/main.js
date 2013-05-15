@@ -113,7 +113,7 @@
                     $eventDuration.slider("refresh");
                 }catch (e){}
 
-                $( "#eventBeginTime").val(date.toLocaleTimeString());
+                $( "#eventBeginTime").val(date.getHours()+date.getTimezoneOffset()/60 + ":" + date.getMinutes());
 
                 var $eventAlarm = $("#eventAlarm");
                 if(selectedEvent.alert){
