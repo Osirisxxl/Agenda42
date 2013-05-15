@@ -147,13 +147,11 @@
             data.description = $( "#eventDescription" ).val();
             data.ownerID = document.agenda42.webService.ownerID;
             var date = new Date(
-                $( "#eventBeginDate" ).val() + " "
+                $( "#eventBeginDate" ).val() + "T"
                 + $( "#eventBeginTime" ).val()
             );
             data.beginDate = date.getFullYear()+"-"+(date.getMonth()+1) +"-"+date.getDate()+"-"
                 + date.getHours()+"-"+date.getMinutes();
-            alert(JSON.stringify(data));
-            alert(JSON.stringify(data.beginDate));
             $.ajax({
                 // the URL for the request
                 url: document.agenda42.webService.baseURI + ((document.agenda42.selections.selectedEvent ===undefined)? "createEvent":"modifyEvent"),
