@@ -1,6 +1,6 @@
 (function () {
       "use strict";
-
+    window.agenda42 = {};
 
     $(document).ready(function(){
         /*//Init fastclick
@@ -8,11 +8,10 @@
             FastClick.attach(document.body);
         });*/
         //Init selected values;
-        document.agenda42 = {};
-        document.agenda42.selections = {
+        agenda42.selections = {
             date : new Date()
         };
-        document.agenda42.webService = {
+        agenda42.webService = {
             baseURI : "http://10.33.33.4:8080/agenda/resources/agenda/",
             ownerID : "testJeremie"
         };
@@ -26,15 +25,15 @@
             //Navigation
             $.mobile.changePage( "#day", { transition: "slide" });
             //Sets selected date
-            document.agenda42.selections.date.setDate( $(this).text() );
-            $( "#day" ).find( "div:first" ).find( "h1" ).html( document.agenda42.selections.date.toLocaleDateString());
+            agenda42.selections.date.setDate( $(this).text() );
+            $( "#day" ).find( "div:first" ).find( "h1" ).html( agenda42.selections.date.toLocaleDateString());
 
             $.support.cors = true;
-            var date = document.agenda42.selections.date;
+            var date = agenda42.selections.date;
             $.ajax({
                 // the URL for the request
-                url: document.agenda42.webService.baseURI + "events/" +
-                    document.agenda42.webService.ownerID + "/" +date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate(),
+                url: agenda42.webService.baseURI + "events/" +
+                    agenda42.webService.ownerID + "/" +date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate(),
 
                 // whether this is a POST or GET request
                 type: "GET",
@@ -58,13 +57,13 @@
                             "</div> " );
                         $newEventCollapsible.bind('expand',function(){
 
-                            document.agenda42.selections.selectedEvent = document.agenda42.selections.results[parseInt(this.id.substring(5))];
+                            agenda42.selections.selectedEvent = agenda42.selections.results[parseInt(this.id.substring(5))];
                         });
 
                         $results.append( $newEventCollapsible );
                     }
                     $results.collapsibleset( "refresh" );
-                    document.agenda42.selections.results = results;
+                    agenda42.selections.results = results;
                 },
 
                 // code to run if the request fails; the raw request and
@@ -81,7 +80,7 @@
 
         //Fill edit event page
         $( "#eventEdit").on("pagebeforeshow",function(){
-            var selectedEvent = document.agenda42.selections.selectedEvent;
+            var selectedEvent = agenda42.selections.selectedEvent;
 
             if(selectedEvent === undefined) {
                 $( "#eventEditHeader").html( "New event" );
@@ -100,7 +99,9 @@
             else{
                 // Display correct header
                 $( "#eventEditHeader").html( "Edit event" );
-
+                alert(agenda42.selections.selectedEvent.beginDate);
+                try{new Date(agenda42.selections.selectedEvent.beginDate);}catch (e){alert(e)}
+                                          /*
                 //Display event info
                 $( "#eventName").val(selectedEvent.name);
                 var date = new Date(selectedEvent.beginDate);
@@ -123,12 +124,13 @@
                 try{$eventAlarm.slider("refresh")}catch (e){}
                 $( "#eventDescription").val(selectedEvent.description);
                 $( "#eventPlace").val(selectedEvent.place);
+                */
             }
         });
         //Init new event action click
         $( "#newEventAction" ).on("tap", function(){
             //Removing previous event selection
-            document.agenda42.selections.selectedEvent = undefined;
+            agenda42.selections.selectedEvent = undefined;
             //collapse events
             $("#dayResults").find('div[data-role="collapsible"]')
             .each(function(){$(this).trigger("collapse");});
@@ -139,13 +141,13 @@
         $( "#saveEvent").on("tap", function(){
             $.mobile.loading( "show" );
             //Build data to send
-            var data = document.agenda42.selections.selectedEvent || {};
+            var data = agenda42.selections.selectedEvent || {};
             data.name = $( "#eventName" ).val();
             data.duration = $( "#eventDuration" ).val();
             data.alert = $( "#eventAlarm" ).val()==="on";
             data.place = $( "#eventPlace" ).val();
             data.description = $( "#eventDescription" ).val();
-            data.ownerID = document.agenda42.webService.ownerID;
+            data.ownerID = agenda42.webService.ownerID;
             var date = new Date(
                 $( "#eventBeginDate" ).val() + "T"
                 + $( "#eventBeginTime" ).val()
@@ -154,10 +156,10 @@
                 + date.getHours()+"-"+date.getMinutes();
             $.ajax({
                 // the URL for the request
-                url: document.agenda42.webService.baseURI + ((document.agenda42.selections.selectedEvent ===undefined)? "createEvent":"modifyEvent"),
+                url: agenda42.webService.baseURI + ((agenda42.selections.selectedEvent ===undefined)? "createEvent":"modifyEvent"),
 
                 // whether this is a POST or GET request
-                type: (document.agenda42.selections.selectedEvent ===undefined)? "POST":"PUT",
+                type: (agenda42.selections.selectedEvent ===undefined)? "POST":"PUT",
                 data: JSON.stringify(data),
 
                 //Enable CORS
