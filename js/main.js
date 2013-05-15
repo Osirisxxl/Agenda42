@@ -99,12 +99,12 @@
             else{
                 // Display correct header
                 $( "#eventEditHeader").html( "Edit event" );
-                alert(agenda42.selections.selectedEvent.beginDate);
-                try{new Date(agenda42.selections.selectedEvent.beginDate);}catch (e){alert(e)}
-                                          /*
+                var s = agenda42.selections.selectedEvent.beginDate;
+                var a = s.split(/[^0-9]/);
+                var date = new Date (a[0],a[1]-1,a[2],a[3],a[4],a[5]) || new Date();
+
                 //Display event info
                 $( "#eventName").val(selectedEvent.name);
-                var date = new Date(selectedEvent.beginDate);
                 $( "#eventBeginDate").val(date.toJSON().slice(0,10));
 
                 var $eventDuration = $("#eventDuration");
@@ -124,7 +124,6 @@
                 try{$eventAlarm.slider("refresh")}catch (e){}
                 $( "#eventDescription").val(selectedEvent.description);
                 $( "#eventPlace").val(selectedEvent.place);
-                */
             }
         });
         //Init new event action click
