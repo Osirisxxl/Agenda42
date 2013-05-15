@@ -152,6 +152,8 @@
             );
             data.beginDate = date.getFullYear()+"-"+(date.getMonth()+1) +"-"+date.getDate()+"-"
                 + date.getHours()+"-"+date.getMinutes();
+            alert(JSON.stringify(data));
+            alert(JSON.stringify(data.beginDate));
             $.ajax({
                 // the URL for the request
                 url: document.agenda42.webService.baseURI + ((document.agenda42.selections.selectedEvent ===undefined)? "createEvent":"modifyEvent"),
@@ -176,7 +178,7 @@
                 // code to run if the request fails; the raw request and
                 // status codes are passed to the function
                 error: function( xhr, status ) {
-                    alert( "The server appears to be unreachable.\n Check your connection" + status.toString());
+                    alert( "The server appears to be unreachable.\n Check your connection");
 
                 },
                 // code to run regardless of success or failure
