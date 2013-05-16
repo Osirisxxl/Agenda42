@@ -20,16 +20,24 @@
         //Init Calendar buttons
         var $myCalendarButtons = $( "#calendar" ).find( "a" );
         $myCalendarButtons.on("tap", function(){
-            //clears events display
-            $( "#dayResults").empty();
             //Navigation
             $.mobile.changePage( "#day", { transition: "slide" });
             //Sets selected date
             agenda42.selections.date.setDate( $(this).text() );
+
+        });
+
+        //Fill day page
+        $( "#day").on("pagebeforeshow",function(){
+
+            //clears events display and selection
+            $( "#dayResults").empty();
+            agenda42.selections.selectedEvent = undefined;
+            //Display correct date
             $( "#day" ).find( "div:first" ).find( "h1" ).html( agenda42.selections.date.toLocaleDateString());
 
-            $.support.cors = true;
             var date = agenda42.selections.date;
+            $.mobile.loading( "show" );
             $.ajax({
                 // the URL for the request
                 url: agenda42.webService.baseURI + "events/" +
@@ -74,9 +82,11 @@
 
                 // code to run regardless of success or failure
                 complete: function( xhr, status ) {
+                    $.mobile.loading( "hide" );
                 }
             });
         });
+
 
         //Fill edit event page
         $( "#eventEdit").on("pagebeforeshow",function(){
@@ -162,7 +172,7 @@
                 data: JSON.stringify(data),
 
                 //Enable CORS
-                crossDomain : true,
+                //crossDomain : true,
 
                 // the type of data we expect back
                 dataType : "json",
@@ -183,7 +193,7 @@
                 // code to run regardless of success or failure
                 complete: function() {
                     $.mobile.loading( "hide" );
-                    $.mobile.changePage( "#month", { transition: "slidedown" });
+                    $.mobile.changePage( "#day", { transition: "slidedown" });
                 }
             });
         });
@@ -224,9 +234,8 @@
                     },
                     // code to run regardless of success or failure
                     complete: function() {
-                        agenda42.selections.selectedEvent = undefined;
                         $.mobile.loading( "hide" );
-                        $.mobile.changePage( "#month", { transition: "slidedown" });
+                        $.mobile.changePage( "#day", { transition: "slidedown" });
                     }
                 });
             }
