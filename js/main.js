@@ -188,6 +188,49 @@
             });
         });
 
+        //Init the saveEvent click
+        $( "#deleteEventAction").on("tap", function(){
+            if(agenda42.selections.selectedEvent === undefined){
+                // display info to user that he needs to select an event first
+                alert("Please pick an event first");
+            }
+            else {
+                $.mobile.loading( "show" );
+                $.ajax({
+                    // the URL for the request
+                    url: agenda42.webService.baseURI + "deleteEvent",
+
+                    //Type of request
+                    type: "DELETE",
+                    data: JSON.stringify(agenda42.selections.selectedEvent),
+
+                    //Enable CORS
+                    crossDomain : true,
+
+                    // the type of data we expect back
+                    contentType: "application/json",
+
+                    // code to run if the request succeeds;
+                    // the response is passed to the function
+                    success: function( results ) {
+
+                    },
+
+                    // code to run if the request fails; the raw request and
+                    // status codes are passed to the function
+                    error: function( xhr, status ) {
+                        alert( "The server appears to be unreachable.\n Check your connection");
+
+                    },
+                    // code to run regardless of success or failure
+                    complete: function() {
+                        agenda42.selections.selectedEvent = undefined;
+                        $.mobile.loading( "hide" );
+                        $.mobile.changePage( "#month", { transition: "slidedown" });
+                    }
+                });
+            }
+        });
     });
 
  })();
