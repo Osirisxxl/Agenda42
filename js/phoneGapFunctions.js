@@ -22,7 +22,8 @@
                 destinationType: Camera.DestinationType.FILE_URI });
 
             function onSuccess(imageURI) {
-                $("#eventImage").src = imageURI;
+                alert(imageURI);
+                $("#eventImage").attr("src", imageURI);
             }
 
             function onFail(message) {
