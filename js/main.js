@@ -43,10 +43,10 @@
         //Init Calendar buttons
         var $myCalendarButtons = $( "#calendar" ).find( "a" );
         $myCalendarButtons.on("tap", function(){
-            //Navigation
-            $.mobile.changePage( "#day", { transition: "slide" });
             //Sets selected date
             agenda42.selections.date.setDate( $(this).text() );
+            //Navigation
+            $.mobile.changePage( "#day", { transition: "slide" });
         });
 
         //Fill day page

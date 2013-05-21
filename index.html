@@ -120,6 +120,15 @@
 
         <!-- Start of page: #eventEdit-->
         <div data-role="page" id="eventEdit">
+            <!-- eventImagePanel -->
+            <div data-role="panel" id="eventImagePanel" data-position="right" data-display="overlay" class="panel-content">
+                <h2 style="text-align: center">Pick a Picture</h2>
+                <div data-role="controlgroup">
+                    <a id="selectPictureButton" data-role="button" href="" data-icon="search">Select existing</a>
+                    <a id="takeNewPictureButton" data-role="button" href="" data-icon="plus">Take new</a>
+                </div>
+                <a data-role="button" data-rel="close" href="" data-icon="delete" style="background-color: red; margin-top:50px">Cancel</a>
+            </div>
 
             <div data-role="header" data-position="fixed">
                 <a data-role="button" data-icon="arrow-l" data-iconpos="notext" data-rel="back">Back</a>
@@ -155,7 +164,7 @@
                         <input id="eventPlace" type="text" placeholder="Event place">
                     </div>
                     <div class="ui-block-b" style="text-align: center; padding-left: 5px">
-                        <img src="apple-touch-icon.png"> <!-- onclick="shiftPhoto()" -->
+                        <img id="eventImage" src="apple-touch-icon.png">
                     </div>
                 </div>
 
@@ -174,11 +183,12 @@
         </div><!-- /page eventEdit-->
 
 
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="js/vendor/jquery-1.9.1.min.js"></script>
         <script src="js/vendor/jquery.mobile-1.3.1.min.js" ></script>
-        <script src="js/vendor/fastclick.js"></script>
+        <script src="phonegap.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/phoneGapFunctions.js"></script>
 
 
     </body>
