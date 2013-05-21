@@ -12,27 +12,27 @@
     $( "#eventEdit" ).on( "pageinit", function() {
 
         //Init the click handler on event image
-        $( "#eventImage").on( "tap" ,function(){
+        $( "#eventImage" ).on( "tap" ,function(){
             $( "#eventImagePanel" ).panel( "open" );
         });
 
         //Init the click handler on selectPictureButton
-        $( "#selectPictureButton").on( "tap", function(){
+        $( "#selectPictureButton" ).on( "tap", function(){
+            //browse image directory
+        });
+        //Init the click handler on TakeNewPictureButton
+        $( "#TakeNewPictureButton").on( "tap", function(){
+            //open photo Task
             navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
                 destinationType: Camera.DestinationType.FILE_URI });
 
             function onSuccess(imageURI) {
-                alert(imageURI);
                 $("#eventImage").attr("src", imageURI);
             }
 
             function onFail(message) {
                 alert('Failed because: ' + message);
             }
-        });
-        //Init the click handler on TakeNewPictureButton
-        $( "#TakeNewPictureButton").on( "tap", function(){
-            //open photo Task
         });
     });
 })();

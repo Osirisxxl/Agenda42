@@ -211,11 +211,19 @@
                 complete: function() {
                     $.mobile.loading( "hide" );
                     $.mobile.changePage( "#day", { transition: "slidedown" });
+                    if($( "#eventAlarm" ).val()==="on"){
+                        navigator.notification.alert(
+                            'You wanted an alert',  // message
+                            function(){},           // callback
+                            'Agenda42 - Alert',     // title
+                            'Done'                  // buttonName
+                        );
+                    };
                 }
             });
         });
 
-        //Init the saveEvent click
+        //Init the deleteEvent click
         $( "#deleteEventAction").on("tap", function(){
             if(agenda42.selections.selectedEvent === undefined){
                 // display info to user that he needs to select an event first
