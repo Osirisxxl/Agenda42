@@ -146,8 +146,7 @@
                 try{
                     $eventDuration.slider("refresh");
                 }catch (e){}
-
-                $( "#eventBeginTime").val(date.getHours()+date.getTimezoneOffset()/60 + ":" + date.getMinutes());
+                $( "#eventBeginTime").val(date.toLocaleTimeString());
 
                 var $eventAlarm = $("#eventAlarm");
                 if(selectedEvent.alert){
@@ -182,10 +181,10 @@
                 + $( "#eventBeginTime" ).val()
             );
             data.beginDate = date.getFullYear()+"-"+(date.getMonth()+1) +"-"+date.getDate()+"-"
-                + date.getHours()+"-"+date.getMinutes();
+                + (date.getHours()+ date.getTimezoneOffset()/60) +"-"+date.getMinutes();
             $.ajax({
                 // the URL for the request
-                url: agenda42.webService.baseURI + ((agenda42.selections.selectedEvent ===undefined)? "createEvent":"modifyEvent"),
+                url: agenda42.webService.baseURI + ((agenda42.selections.selectedEvent === undefined)? "createEvent":"modifyEvent"),
 
                 // whether this is a POST or GET request
                 type: (agenda42.selections.selectedEvent ===undefined)? "POST":"PUT",
@@ -211,14 +210,14 @@
                 complete: function() {
                     $.mobile.loading( "hide" );
                     $.mobile.changePage( "#day", { transition: "slidedown" });
-                    if($( "#eventAlarm" ).val()==="on"){
+                    /*if($( "#eventAlarm" ).val()==="on"){
                         navigator.notification.alert(
                             'You wanted an alert',  // message
                             function(){},           // callback
                             'Agenda42 - Alert',     // title
                             'Done'                  // buttonName
                         );
-                    };
+                    };*/
                 }
             });
         });
