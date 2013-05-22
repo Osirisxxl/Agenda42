@@ -123,6 +123,7 @@
                 var $eventDuration = $("#eventDuration");
                 $eventDuration.val(60);
                 try{$eventDuration.slider("refresh")}catch(e){}
+                alert(date.toLocaleTimeString().slice(0,5));
                 $("#eventBeginTime").val(date.toLocaleTimeString().slice(0,5));
                 var $eventAlarm = $("#eventAlarm");
                 try{$eventAlarm.val('off');}catch (e){}
