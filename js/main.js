@@ -118,12 +118,12 @@
                 //Reset the values to default
                 $("#eventName").val("");
                 var date = new Date();
-                date.setSeconds(0);
+                //date.setSeconds(0);
                 $("#eventBeginDate").val(date.toJSON().slice(0,10));
                 var $eventDuration = $("#eventDuration");
                 $eventDuration.val(60);
                 try{$eventDuration.slider("refresh")}catch(e){}
-                $("#eventBeginTime").val(date.toLocaleTimeString());
+                $("#eventBeginTime").val(date.toLocaleTimeString.slice(0,5));
                 var $eventAlarm = $("#eventAlarm");
                 try{$eventAlarm.val('off');}catch (e){}
                 $( "#eventDescription").val("");
@@ -147,7 +147,7 @@
                 try{
                     $eventDuration.slider("refresh");
                 }catch (e){}
-                $( "#eventBeginTime").val(date.toLocaleTimeString());
+                $( "#eventBeginTime").val(date.toLocaleTimeString().slice(0,5));
 
                 var $eventAlarm = $("#eventAlarm");
                 if(selectedEvent.alert){
