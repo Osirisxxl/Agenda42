@@ -118,11 +118,12 @@
                 //Reset the values to default
                 $("#eventName").val("");
                 var date = new Date();
+                date.setSeconds(0);
                 $("#eventBeginDate").val(date.toJSON().slice(0,10));
                 var $eventDuration = $("#eventDuration");
                 $eventDuration.val(60);
                 try{$eventDuration.slider("refresh")}catch(e){}
-                $("#eventBeginTime").val(date.getHours()+date.getTimezoneOffset()/60 + ":" + date.getMinutes());
+                $("#eventBeginTime").val(date.toLocaleTimeString());
                 var $eventAlarm = $("#eventAlarm");
                 try{$eventAlarm.val('off');}catch (e){}
                 $( "#eventDescription").val("");
@@ -132,7 +133,7 @@
                 // Set the event data we're editing
                 // Display correct header
                 $( "#eventEditHeader").html( "Edit event" );
-                //Parsing date(to ensure support across all browsers
+                //Parsing date(to ensure support across all browsers)
                 var s = agenda42.selections.selectedEvent.beginDate;
                 var a = s.split(/[^0-9]/);
                 var date = new Date (a[0],a[1]-1,a[2],a[3],a[4],a[5]) || new Date();
@@ -210,14 +211,14 @@
                 complete: function() {
                     $.mobile.loading( "hide" );
                     $.mobile.changePage( "#day", { transition: "slidedown" });
-                    /*if($( "#eventAlarm" ).val()==="on"){
+                    if($( "#eventAlarm" ).val()==="on"){
                         navigator.notification.alert(
                             'You wanted an alert',  // message
                             function(){},           // callback
                             'Agenda42 - Alert',     // title
                             'Done'                  // buttonName
                         );
-                    };*/
+                    };
                 }
             });
         });
