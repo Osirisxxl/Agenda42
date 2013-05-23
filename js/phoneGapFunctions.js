@@ -28,10 +28,12 @@
 
         // Bind the renderer to the map and the panel to display directions
         directionsDisplay.setMap(map);
+        //$("#directionsPanel").empty();
+
         directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 
         var request = {
-            origin: new google.maps.LatLng(lat,lng),
+            origin: origin,
             destination: destination,
             travelMode: google.maps.TravelMode.DRIVING
         };
