@@ -9,6 +9,37 @@
 
 (function () {
     "use strict";
+    //Init contactWidget
+    $(document).ready(function(){
+        var $eventInvitedPeople = $( "#eventInvitedPeople" );
+        var $contactsListView = $( "#contactsListView" );
+        $( "#buttonEventInvitedPeople").on( "tap", function(){
+            $eventInvitedPeople.css("display", "block");
+            $contactsListView.css("display", "none");
+        });
+        $( "#buttonContactsListView").on( "tap", function(){
+            $eventInvitedPeople.css("display", "none");
+            $contactsListView.css("display", "block");
+        });
+
+        function onSuccess(contacts) {
+            $.each(contacts,function(){
+                var contact = $( "<li><a>" + this.displayName + "</a></li>" );
+                $( "#contactsListView" ).append(contact);
+            });
+        };
+
+        function onError(contactError) {
+            alert('Could not retrieve contacts. Error: ' + contactError);
+        };
+        // find all contacts with any name field
+        var options = new ContactFindOptions();
+        options.multiple = true;
+        var fields = ["displayName", "name"];
+        navigator.contacts.find(fields, onSuccess, onError, options);
+    });
+
+
 
     function displayMap(lat, lng, $eventPlace) {
         var map;
@@ -47,8 +78,20 @@
         });
     }
 
-    $( "#eventEdit" ).on( "pageinit", function() {
+    $( "#eventEdit" ).on( "pagebeforeshow", function() {
+        //Clear invitedListView and Display invited people for the selectedEvent
+        var $eventInvitedPeople = $( "#eventInvitedPeople").empty();
+        var invited = agenda42.selections.selectedEvent.invited;
+        $.each(invited,function(){
+            var contact = $( "<li><a>" + this.firstName + " " + this.lastName + "</a></li>" );
+            $eventInvitedPeople.append(contact);
+        });
+        $eventInvitedPeople.listview("refresh");
 
+    });
+
+
+    $( "#eventEdit" ).on( "pageinit", function() {
         //Init the click handler on event image
         $( "#eventImage" ).on( "tap" ,function(){
             $( "#eventImagePanel" ).panel( "open" );
@@ -57,21 +100,20 @@
         //Init the click handler on selectPictureButton
         $( "#selectPictureButton" ).on( "tap", function(){
             //browse image directory
+            //NOT SUPPORTED
         });
         //Init the click handler on TakeNewPictureButton
-        $( "#TakeNewPictureButton").on( "tap", function(){
+        $( "#TakeNewPictureButton" ).on( "tap", function(){
             //open photo Task
             navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
                 destinationType: Camera.DestinationType.FILE_URI });
-
-            function onSuccess(imageURI) {
-                $("#eventImage").attr("src", imageURI);
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-            }
         });
+        function onSuccess(imageURI) {
+            $( "#eventImage" ).attr("src", imageURI);
+        }
+        function onFail(message) {
+            alert( 'Failed because: ' + message);
+        }
 
         //Setting up the navigationPage with directions
         $( "#directionsMap" ).on( "pagebeforeshow", function(){
@@ -92,4 +134,5 @@
             navigator.geolocation.getCurrentPosition(onSuccess, onError);
         });
     });
+
 })();
