@@ -35,7 +35,11 @@
         };
         // find all contacts with any name field
         var fields = ["displayName", "name"];
-        navigator.contacts.find(fields, onSuccess, onError);
+        try{
+            navigator.contacts.find(fields, onSuccess, onError);
+        }catch (e){
+            alert("Could not use phoneGap contacts search: " + e.message);
+        }
     });
 
 
@@ -80,7 +84,7 @@
     $( "#eventEdit" ).on( "pagebeforeshow", function() {
         //Clear invitedListView and Display invited people for the selectedEvent
         var $eventInvitedPeople = $( "#eventInvitedPeople").empty();
-        var invited = agenda42.selections.selectedEvent.invited;
+        var invited = agenda42.selections.selectedEvent.invited || [];
         $.each(invited,function(){
             var contact = $( "<li><a>" + this.firstName + " " + this.lastName + "</a></li>" );
             $eventInvitedPeople.append(contact);
