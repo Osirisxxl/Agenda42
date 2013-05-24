@@ -38,6 +38,7 @@
         try{
             navigator.contacts.find(fields, onSuccess, onError);
         }catch (e){
+            alert(navigator.contacts);
             alert("Could not use phoneGap contacts search: " + e.message);
         }
     });
