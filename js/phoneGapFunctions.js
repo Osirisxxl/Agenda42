@@ -23,6 +23,7 @@
         });
 
         function onSuccess(contacts) {
+            alert(" Contacts success : " + contacts.length );
             $.each(contacts,function(){
                 var contact = $( "<li><a>" + this.displayName + "</a></li>" );
                 $( "#contactsListView" ).append(contact);
@@ -33,10 +34,8 @@
             alert('Could not retrieve contacts. Error: ' + contactError);
         };
         // find all contacts with any name field
-        var options = new ContactFindOptions();
-        options.multiple = true;
         var fields = ["displayName", "name"];
-        navigator.contacts.find(fields, onSuccess, onError, options);
+        navigator.contacts.find(fields, onSuccess, onError);
     });
 
 
@@ -87,7 +86,6 @@
             $eventInvitedPeople.append(contact);
         });
         $eventInvitedPeople.listview("refresh");
-
     });
 
 
@@ -103,7 +101,7 @@
             //NOT SUPPORTED
         });
         //Init the click handler on TakeNewPictureButton
-        $( "#TakeNewPictureButton" ).on( "tap", function(){
+        $( "#takeNewPictureButton" ).on( "tap", function(){
             //open photo Task
             navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
                 destinationType: Camera.DestinationType.FILE_URI });
