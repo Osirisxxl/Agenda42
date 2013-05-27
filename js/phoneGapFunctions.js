@@ -38,7 +38,6 @@
         try{
             navigator.contacts.find(fields, onSuccess, onError);
         }catch (e){
-            alert(navigator.contacts);
             alert("Could not use phoneGap contacts search: " + e.message);
         }
     });
@@ -63,7 +62,7 @@
 
         // Bind the renderer to the map and the panel to display directions
         directionsDisplay.setMap(map);
-        //$("#directionsPanel").empty();
+        $("#directionsPanel").empty();
 
         directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 
@@ -85,12 +84,14 @@
     $( "#eventEdit" ).on( "pagebeforeshow", function() {
         //Clear invitedListView and Display invited people for the selectedEvent
         var $eventInvitedPeople = $( "#eventInvitedPeople").empty();
-        var invited = agenda42.selections.selectedEvent.invited || [];
-        $.each(invited,function(){
-            var contact = $( "<li><a>" + this.firstName + " " + this.lastName + "</a></li>" );
-            $eventInvitedPeople.append(contact);
-        });
-        $eventInvitedPeople.listview("refresh");
+        var selectedEvent = agenda42.selections.selectedEvent;
+        if(selectedEvent !== undefined){
+            $.each(selectedEvent.invited,function(){
+                var contact = $( "<li><a>" + this.firstName + " " + this.lastName + "</a></li>" );
+                $eventInvitedPeople.append(contact);
+            });
+            $eventInvitedPeople.listview("refresh");
+        }
     });
 
 
@@ -103,13 +104,18 @@
         //Init the click handler on selectPictureButton
         $( "#selectPictureButton" ).on( "tap", function(){
             //browse image directory
-            //NOT SUPPORTED
+            alert ("Unsupported feature");
         });
         //Init the click handler on TakeNewPictureButton
         $( "#takeNewPictureButton" ).on( "tap", function(){
             //open photo Task
-            navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-                destinationType: Camera.DestinationType.FILE_URI });
+            if(navigator.camera !== undefined){
+                navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+                    destinationType: Camera.DestinationType.FILE_URI });
+            }
+            else {
+                alert ("Unsupported feature on this platform");
+            }
         });
         function onSuccess(imageURI) {
             $( "#eventImage" ).attr("src", imageURI);
