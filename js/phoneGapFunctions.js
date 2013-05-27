@@ -25,16 +25,20 @@
 
         function onSuccess(contacts) {
             $.each(contacts,function(){
+                var undef = undefined;
+                if(device.platform === "iOS"){
+                    undef = null;
+                }
                 var givenName = "";
-                if(this.name.givenName !== undefined){
+                if(this.name.givenName !== undef){
                     givenName = this.name.givenName;
                 }
                 var middleName = "";
-                if(this.name.middleName !== undefined){
+                if(this.name.middleName !== undef){
                     middleName = this.name.middleName;
                 }
                 var familyName = "";
-                if(this.name.familyName !== undefined){
+                if(this.name.familyName !== undef){
                     familyName = this.name.familyName;
                 }
                 var contact = $( "<li><a>" + givenName + " "
