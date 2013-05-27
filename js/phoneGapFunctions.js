@@ -25,6 +25,7 @@
 
         function onSuccess(contacts) {
             $.each(contacts,function(){
+                //Formating values to display contacts names
                 var undef = undefined;
                 if(device.platform === "iOS"){
                     undef = null;
