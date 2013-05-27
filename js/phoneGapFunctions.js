@@ -25,7 +25,8 @@
 
         function onSuccess(contacts) {
             $.each(contacts,function(){
-                var contact = $( "<li><a>" + this.id + "</a></li>" );
+                var contact = $( "<li><a>" + this.name.givenName
+                    + " " + this.name.middleName + " " + this.name.familyName + "</a></li>" );
                 $( "#contactsListView" ).append(contact);
             });
         };
@@ -37,7 +38,7 @@
         function findContacts() {
             var options = new ContactFindOptions();
             options.multiple  = true;
-            var fields = ["id", "name"];
+            var fields = ["name"];
             try{
                 navigator.contacts.find(fields, onSuccess, onError, options);
             }catch (e){
