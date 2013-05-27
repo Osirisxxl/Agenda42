@@ -11,7 +11,7 @@
     "use strict";
     //Init contactWidget
     $(document).ready(function(){
-        document.addEventListener("deviceready", findContacts, false);
+        document.addEventListener("deviceready", findContacts , false);
         var $eventInvitedPeople = $( "#eventInvitedPeople" );
         var $contactsListView = $( "#contactsListView" );
         $( "#buttonEventInvitedPeople").on( "tap", function(){
@@ -24,9 +24,8 @@
         });
 
         function onSuccess(contacts) {
-            alert(" Contacts success : " + contacts.length );
             $.each(contacts,function(){
-                var contact = $( "<li><a>" + this.displayName + "</a></li>" );
+                var contact = $( "<li><a>" + this.name + "</a></li>" );
                 $( "#contactsListView" ).append(contact);
             });
         };
@@ -36,7 +35,7 @@
         };
         // find all contacts with any name field
         function findContacts() {
-            var fields = ["displayName", "name"];
+            var fields = ["id", "name"];
             try{
                 navigator.contacts.find(fields, onSuccess, onError);
             }catch (e){
