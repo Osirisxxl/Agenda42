@@ -118,7 +118,6 @@
                 //Reset the values to default
                 $("#eventName").val("");
                 var date = new Date();
-                //date.setSeconds(0);
                 $("#eventBeginDate").val(date.toJSON().slice(0,10));
                 var $eventDuration = $("#eventDuration");
                 $eventDuration.val(60);

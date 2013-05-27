@@ -11,6 +11,7 @@
     "use strict";
     //Init contactWidget
     $(document).ready(function(){
+        document.addEventListener("deviceready", findContacts, false);
         var $eventInvitedPeople = $( "#eventInvitedPeople" );
         var $contactsListView = $( "#contactsListView" );
         $( "#buttonEventInvitedPeople").on( "tap", function(){
@@ -34,12 +35,14 @@
             alert('Could not retrieve contacts. Error: ' + contactError);
         };
         // find all contacts with any name field
-        var fields = ["displayName", "name"];
-        try{
-            navigator.contacts.find(fields, onSuccess, onError);
-        }catch (e){
-            alert("Could not use phoneGap contacts search: " + e.message);
-        }
+        function findContacts() {
+            var fields = ["displayName", "name"];
+            try{
+                navigator.contacts.find(fields, onSuccess, onError);
+            }catch (e){
+                alert("Could not use phoneGap contacts search: " + e.message);
+            }
+        };
     });
 
 
