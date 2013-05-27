@@ -25,8 +25,20 @@
 
         function onSuccess(contacts) {
             $.each(contacts,function(){
-                var contact = $( "<li><a>" + this.name.givenName
-                    + " " + this.name.middleName + " " + this.name.familyName + "</a></li>" );
+                var givenName = "";
+                if(this.name.givenName !== undefined){
+                    givenName = this.name.givenName;
+                }
+                var middleName = "";
+                if(this.name.middleName !== undefined){
+                    middleName = this.name.middleName;
+                }
+                var familyName = "";
+                if(this.name.familyName !== undefined){
+                    familyName = this.name.familyName;
+                }
+                var contact = $( "<li><a>" + givenName + " "
+                    + middleName + " " + familyName + "</a></li>" );
                 $( "#contactsListView" ).append(contact);
             });
         };
